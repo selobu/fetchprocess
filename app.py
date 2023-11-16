@@ -5,9 +5,11 @@
 """
 
 from chalice import Chalice
+from src.config import Config
+import subprocess
 
-app = Chalice(app_name='fetchprocess')
-
+app = Chalice(app_name=Config.API_NAME)
+Log = app.log
 
 @app.route('/')
 def index():
@@ -25,6 +27,7 @@ def fetch():
     Returns:
         _type_: _description_
     """
+    Log.info("Retrieving data")
     return {'fetch': 'data'}
 
 @app.route('/viwe-data')
@@ -34,17 +37,19 @@ def viewdata():
     Returns:
         _type_: _description_
     """
+    Log.info('Viewing data')
     return {'fetch': 'data'}
 
-@app.route('/status')
-def status():
+@app.route('/status/{numentries}')
+def status(numentries):
     """_summary_
 
     Returns:
         _type_: _description_
     """
-    return {'fetch': 'data'}
-
+    
+    result = subprocess.run(['chalice', 'logs', '--num-entries', 'numentries'], capture_output=True)
+    return repr(result.stdout)
 
 # The view function above will return {"hello": "world"}
 # whenever you make an HTTP GET request to '/'.

@@ -1,0 +1,1 @@
+chalice generate-pipeline --pipeline-version v2 pipeline.json --source github

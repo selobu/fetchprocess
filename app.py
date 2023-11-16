@@ -1,3 +1,9 @@
+"""_summary_
+
+    Returns:
+        _type_: _description_
+"""
+
 from chalice import Chalice
 
 app = Chalice(app_name='fetchprocess')
@@ -5,6 +11,11 @@ app = Chalice(app_name='fetchprocess')
 
 @app.route('/')
 def index():
+    """_summary_
+
+    Returns:
+        _type_: _description_
+    """
     return {'hello': 'world'}
 
 

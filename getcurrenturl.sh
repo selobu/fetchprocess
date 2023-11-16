@@ -1,1 +1,1 @@
-aws cloudformation describe-stacks --stack-name FetchProcess --query "Stacks[].Outputs[?OutputKey=='EndpointURL'][] | [0].OutputValue"
+aws cloudformation describe-stacks --stack-name fetchprocessBetaStack --query "Stacks[].Outputs[?OutputKey=='EndpointURL'][] | [0].OutputValue"

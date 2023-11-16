@@ -8,13 +8,13 @@ appname = environ.get("APPNAME", default='fetchprocess')
 class Config:
     """Configuration app parameters
     """
-    API_NAME: str = "future loop api"
-    VERSION: str = "0.0.1"
-    API_URL_PREFIX: str = "/api"
-    API_DESCRIPTION: str = "[source code](https://github.com/selobu/my_url)"
+    api_name: str = "future loop api"
+    version: str = "0.0.1"
+    api_url_prefix: str = "/api"
+    api_description: str = "[source code](https://github.com/selobu/my_url)"
     admin_email: str = ""
     items_per_user: int = 50
-    API_CONTACT: object = {
+    api_contact: object = {
         "name": "Sebastian Lopez",
         "email": "sebastian.lopez@gestionhseq.com",
         "url": "https://lteam.gestionhseq.com",
@@ -22,5 +22,5 @@ class Config:
     }
     app: object = {}
     engine: object = {}
-    APP_NAME: str = appname  # type:ignore
-    PER_PAGE: int = 50
+    app_name: str = appname  # type:ignore
+    per_page: int = 50

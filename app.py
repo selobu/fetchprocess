@@ -8,7 +8,7 @@ import subprocess
 from chalice import Chalice
 from src.config import Config
 
-app = Chalice(app_name=Config.API_NAME)
+app = Chalice(app_name=Config.api_name)
 Log = app.log
 
 @app.route('/')

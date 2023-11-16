@@ -5,7 +5,7 @@ from os import environ
 appname = environ.get("APPNAME", default='fetchprocess')
 
 @dataclass
-class Config:
+class Config: # pylint: disable=R0902
     """Configuration app parameters
     """
     api_name: str = "future loop api"

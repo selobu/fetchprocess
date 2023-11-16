@@ -18,6 +18,33 @@ def index():
     """
     return {'hello': 'world'}
 
+@app.route('/fetch-data')
+def fetch():
+    """_summary_
+
+    Returns:
+        _type_: _description_
+    """
+    return {'fetch': 'data'}
+
+@app.route('/viwe-data')
+def viewdata():
+    """_summary_
+
+    Returns:
+        _type_: _description_
+    """
+    return {'fetch': 'data'}
+
+@app.route('/status')
+def status():
+    """_summary_
+
+    Returns:
+        _type_: _description_
+    """
+    return {'fetch': 'data'}
+
 
 # The view function above will return {"hello": "world"}
 # whenever you make an HTTP GET request to '/'.

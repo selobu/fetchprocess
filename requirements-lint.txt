@@ -1,2 +1,2 @@
-chalice
-pylint
+chalice==1.29.0
+pylint==2.16

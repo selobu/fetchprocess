@@ -1,9 +1,10 @@
 """ Configuration file
 """
-
+from dataclasses import dataclass
 from os import environ
 appname = environ.get("APPNAME", default='fetchprocess')
 
+@dataclass
 class Config:
     """Configuration app parameters
     """

@@ -4,9 +4,9 @@
         _type_: _description_
 """
 
-from chalice import Chalice
-from src.config import Config
 import subprocess
+from src.config import Config
+from chalice import Chalice
 
 app = Chalice(app_name=Config.API_NAME)
 Log = app.log
@@ -47,8 +47,7 @@ def status(numentries):
     Returns:
         _type_: _description_
     """
-    
-    result = subprocess.run(['chalice', 'logs', '--num-entries', 'numentries'], capture_output=True)
+    result = subprocess.run(['chalice', 'logs', '--num-entries', numentries], check=True, capture_output=True)
     return repr(result.stdout)
 
 # The view function above will return {"hello": "world"}

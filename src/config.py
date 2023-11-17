@@ -14,13 +14,14 @@ class Config: # pylint: disable=R0902
     api_description: str = "[source code](https://github.com/selobu/my_url)"
     admin_email: str = ""
     items_per_user: int = 50
-    api_contact: object = {
+    api_contact= {
         "name": "Sebastian Lopez",
         "email": "sebastian.lopez@gestionhseq.com",
         "url": "https://lteam.gestionhseq.com",
         "telegram": "https://t.me/selopez",
     }
-    app: object = {}
-    engine: object = {}
+    app= {}
+    engine = {}
     app_name: str = appname  # type:ignore
     per_page: int = 50
+    externalapiurl = ''

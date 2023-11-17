@@ -20,7 +20,7 @@ def index():
     """
     return {'hello': 'world'}
 
-@app.route('/fetch-data')
+@app.route('/fetch-data', methods=['GET'])
 def fetch():
     """_summary_
 
@@ -30,7 +30,7 @@ def fetch():
     Log.info("Retrieving data")
     return {'fetch': 'data'}
 
-@app.route('/viwe-data')
+@app.route('/view-data', methods=['GET'])
 def viewdata():
     """_summary_
 
@@ -38,9 +38,9 @@ def viewdata():
         _type_: _description_
     """
     Log.info('Viewing data')
-    return {'fetch': 'data'}
+    return {'view': 'data'}
 
-@app.route('/status/{numentries}')
+@app.route('/status/{numentries}', methods=['GET'])
 def status(numentries):
     """_summary_
 

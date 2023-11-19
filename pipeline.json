@@ -419,6 +419,38 @@
           ]
         }
       }
+    },
+    "DBDynamo": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties":{
+        "TableName": "Demo",
+        "AttributeDefinitions" : [ {"AttributeName": "id",  "AttributeType": "S"},
+          {"AttributeName": "timestamp",  "AttributeType": "S"}
+        ],
+        "BillingMode" : "PAY_PER_REQUEST",
+        "ContributorInsightsSpecification" : {  "Enabled" : true },
+        "DeletionProtectionEnabled" : true,
+        "KeySchema" : [ {"AttributeName": "id",  "KeyType": "HASH"},
+          {"AttributeName": "timestamp",   "KeyType": "RANGE"}
+        ],
+        "TableClass" : "STANDARD",
+        "Tags" : [ ]
+      }
+    },
+    "DBDynamoRatelimit": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties":{
+        "TableName": "RateLimit",
+        "AttributeDefinitions" : [ {"AttributeName": "timestamp",  "AttributeType": "S"}
+        ],
+        "BillingMode" : "PAY_PER_REQUEST",
+        "ContributorInsightsSpecification" : {  "Enabled" : true },
+        "DeletionProtectionEnabled" : true,
+        "KeySchema" : [ {"AttributeName": "timestamp",  "KeyType": "HASH"}
+        ],
+        "TableClass" : "STANDARD",
+        "Tags" : [ ]
+      }
     }
   },
   "Outputs": {
@@ -445,6 +477,16 @@
     "CFNDeployRoleArn": {
       "Value": {
         "Fn::GetAtt": "CFNDeployRole.Arn"
+      }
+    },
+    "Demo": {
+      "Value": {
+        "Ref": "DBDynamo"
+      }
+    },
+    "RateLimit": {
+      "Value": {
+        "Ref": "DBDynamoRatelimit"
       }
     }
   }

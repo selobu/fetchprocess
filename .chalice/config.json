@@ -4,7 +4,7 @@
   "api_gateway_endpoint_type": "REGIONAL",
   "stages": {
     "dev": {
-      "api_gateway_stage": "api"
+      "api_gateway_stage": "api",
     }
   }
 }

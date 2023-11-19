@@ -74,7 +74,48 @@ Implement a mechanism to handle rate limits and possible errors from the externa
     ```
     $ . getcurrenturl.sh
     ```
+
+## dabase description
+
+Tablename | Simple  Primary key | description
+---|---|---
+Demo | id | store data retrieved from de selected api endpoint
+ratelimit | timestamp | store request to limit maximum request per a given time
+
+
+### Sample data
+
+**Demo** database
+
+``` JSON
+{
+    "Demo": [
+        "PutRequest":{
+            "Item":{
+                "Id": { "N": "12" },
+                "Timestamp":{ "S" : "" },
+                "title": { "S": "title" },
+                "body": { "S": "<div>Some content</div>" },
+                "userID":{ "N": "12541" }
+            }
+        }
+    ]
+
+}
+```
+
+**RateLimit** database
+
+``` JSON
+{ "RateLimit":_[
+
+]}
+
+```
+
+
 ## Local testing
+
 
 ```
     $ chalice local --port 8001

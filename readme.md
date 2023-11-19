@@ -93,7 +93,7 @@ ratelimit | timestamp | store request to limit maximum request per a given time
         "PutRequest":{
             "Item":{
                 "Id": { "N": "12" },
-                "Timestamp":{ "S" : "" },
+                "Timestamp":{ "S" : "1657909397" },
                 "title": { "S": "title" },
                 "body": { "S": "<div>Some content</div>" },
                 "userID":{ "N": "12541" }
@@ -110,7 +110,7 @@ ratelimit | timestamp | store request to limit maximum request per a given time
 { "RateLimit": [
     "PutRequest":{
         "Item":{
-            "timestamp" : [ "N": "1657909382"]
+            "timestamp" : [ "S": "1657909382"]
         }
     }
 

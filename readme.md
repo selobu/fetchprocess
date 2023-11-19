@@ -107,14 +107,19 @@ ratelimit | timestamp | store request to limit maximum request per a given time
 **RateLimit** database
 
 ``` JSON
-{ "RateLimit":_[
+{ "RateLimit": [
+    "PutRequest":{
+        "Item":{
+            "timestamp" : [ "N": "1657909382"]
+        }
+    }
 
 ]}
 
 ```
 
 
-## Local testing
+## Local deployment
 
 
 ```

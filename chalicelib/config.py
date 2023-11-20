@@ -20,6 +20,7 @@ class Config: # pylint: disable=R0902
         "url": "https://lteam.gestionhseq.com",
         "telegram": "https://t.me/selopez",
     }
+    logging_format:str = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
     app= {}
     engine = {}
     app_name: str = appname  # type:ignore

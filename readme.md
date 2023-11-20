@@ -13,9 +13,9 @@ Implement a mechanism to handle rate limits and possible errors from the externa
 
 ## Setup and deployment
 
-0. Install and configura aws cli
-1. Create an aws user with the required role and permisions (lambda, cloudwatch, cloudformation, codepipeline, s3, IAM, APIGateway, codeDeploy, DynamoDB, SecretsManager)
-2. Create a github repo and upload this source code
+0. Install and configure aws cli
+1. Create an aws user with the required role and permissions (lambda, cloudwatch, cloudformation, codepipeline, s3, IAM, APIGateway, codeDeploy, DynamoDB, SecretsManager)
+2. Create a GitHub repo and upload this source code
 3. Create an aws access key https://awscli.amazonaws.com/v2/documentation/api/latest/reference/sts/assume-role.html
 
     save your credentials
@@ -27,7 +27,7 @@ Implement a mechanism to handle rate limits and possible errors from the externa
     $ vim ~/.aws/credentials
     ```
 
-    save the folowing
+    save the following
 
     ```
     [default]
@@ -35,9 +35,9 @@ Implement a mechanism to handle rate limits and possible errors from the externa
     aws_secret_access_key= ******
     ```
 
-    Replace **** with your own credentials
+    Replace **** with your credentials
 
-4. Create an OAuth key pair from github and store it as an aws secret
+4. Create an OAuth key pair from GitHub and store it as an aws secret
 
     ``` bash 
     $ vim ///tmp/secret.json 
@@ -75,11 +75,11 @@ Implement a mechanism to handle rate limits and possible errors from the externa
     $ . getcurrenturl.sh
     ```
 
-## dabase description
+## database description
 
-Tablename | Simple  Primary key | description
+Tablename | Simple  Primary key | Description
 ---|---|---
-Demo | id | store data retrieved from de selected api endpoint
+Demo | id | store data retrieved from the selected api endpoint
 ratelimit | timestamp | store request to limit maximum request per a given time
 
 
@@ -126,7 +126,7 @@ ratelimit | timestamp | store request to limit maximum request per a given time
     $ chalice local --port 8001
 ```
 
-The chalice app should be running in http://127.0.0.1:8001
+The chalice app should be running at http://127.0.0.1:8001
 
 
 ## api docs
@@ -140,7 +140,7 @@ endpoints:
 
 Detailed api information https://app.swaggerhub.com/apis/SELOBU_1/futureloop/1.0.0  (in progress)
 
-## logging format
+## Logging format
 
 By default de app use the follogin format
 
@@ -151,8 +151,8 @@ for detailed information please read https://docs.python.org/3.9/library/logging
 
 ## decisions making
 
-1. Create a sonfiguration file to read general information such as app name, fetch url endpoints
+1. Create a configuration file to read general information such as app name, fetch url endpoints
 2. DB: selected dynamodb to store information
 3. Security: JWT to protect endpoints
-4. API docs: selected restapi but the framework is lacking of automatically sawagger structure generation, so I choose swaggerhub to create the api documentation.
-5. Create a hack to enforce custom logging format
+4. API docs: I selected restapi but the framework is lacking of automatically swagger structure generation, so I chose swaggerhub to create the api documentation.
+5. Create a hack to enforce a custom logging format

@@ -5,19 +5,27 @@
 """
 
 import subprocess
+from functools import wraps
 from chalice import Chalice
 from src.config import Config
 from src.log import configlogging
-from functools import wraps
 app = Chalice(app_name=Config.api_name)
 
 # -----
 # hack : overwriting chalice log config
 configlogging(app)
-# ----- 
+# -----
 log = app.log
 
 def docs(func):
+    """automatically rest api document generation
+
+    Args:
+        func (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
     @wraps(func)
     def wrapper(*args, **kwargs):
         """_summary_
@@ -67,7 +75,7 @@ def status(numentries):
     """
     result = subprocess.run(['chalice', 'logs', '--num-entries', numentries],\
                              check=True, capture_output=True)
-    
+
     return repr(result.stdout)
 
 

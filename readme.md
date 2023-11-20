@@ -140,10 +140,16 @@ endpoints:
 
 Detailed api information https://app.swaggerhub.com/apis/SELOBU_1/futureloop/1.0.0  (in progress)
 
+## logging format
+
+By default de app use the follogin format, for detailed information please read https://docs.python.org/3.9/library/logging.html
+
+` %(asctime)s - %(name)s - %(levelname)s - %(message)s `
+
 ## decisions making
 
 1. Create a sonfiguration file to read general information such as app name, fetch url endpoints
 2. DB: selected dynamodb to store information
 3. Security: JWT to protect endpoints
 4. API docs: selected restapi but the framework is lacking of automatically sawagger structure generation, so I choose swaggerhub to create the api documentation.
-5. 
+5. Create a hack to enforce custom logging format

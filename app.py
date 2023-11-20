@@ -5,11 +5,36 @@
 """
 
 import subprocess
+from functools import wraps
 from chalice import Chalice
 from src.config import Config
-
+from src.log import configlogging
 app = Chalice(app_name=Config.api_name)
-Log = app.log
+
+# -----
+# hack : overwriting chalice log config
+configlogging(app)
+# -----
+log = app.log
+
+def docs(func):
+    """automatically rest api document generation
+
+    Args:
+        func (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        """_summary_
+
+        Returns:
+            _type_: _description_
+        """
+        return func(*args, **kwargs)
+    return wrapper
 
 @app.route('/')
 def index():
@@ -18,6 +43,7 @@ def index():
     Returns:
         _type_: _description_
     """
+    log.info('information')
     return {'hello': 'world'}
 
 @app.route('/fetch-data', methods=['GET'])
@@ -27,7 +53,7 @@ def fetch():
     Returns:
         _type_: _description_
     """
-    Log.info("Retrieving data")
+    log.info("Retrieving data")
     return {'fetch': 'data'}
 
 @app.route('/view-data', methods=['GET'])
@@ -37,7 +63,7 @@ def viewdata():
     Returns:
         _type_: _description_
     """
-    Log.info('Viewing data')
+    log.info('Viewing data')
     return {'view': 'data'}
 
 @app.route('/status/{numentries}', methods=['GET'])
@@ -49,7 +75,9 @@ def status(numentries):
     """
     result = subprocess.run(['chalice', 'logs', '--num-entries', numentries],\
                              check=True, capture_output=True)
+
     return repr(result.stdout)
+
 
 # The view function above will return {"hello": "world"}
 # whenever you make an HTTP GET request to '/'.

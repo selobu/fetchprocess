@@ -14,9 +14,16 @@ from pathlib import Path
 from os.path import abspath
 
 def icludepath():
+    print('Cekcing configuration')
+    print(__file__)
     cp = Path(__file__).parent
+    print(cp)
     if abspath(cp) not in syspath:
+        print('CP added')
         syspath.append(abspath(cp))
+    else:
+        print('Not added')
+    print('====')
 icludepath()
 # ---
 try:
@@ -25,7 +32,7 @@ try:
 except ImportError:
     from .src.config import Config # type:ignore
     from .src.log import configlogging # type:ignore
-    
+
 app = Chalice(app_name=Config.api_name)
 
 # -----

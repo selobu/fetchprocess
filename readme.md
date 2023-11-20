@@ -6,6 +6,8 @@ Fetch and process app is a servless api to allows you to
 
 Deploy this Chalice app using AWS Lambda and API Gateway.
 
+current endpoint url https://dxd485zetg.execute-api.us-east-1.amazonaws.com/api/
+
 **External API Integration:**
 
 Use any public API (e.g., JSONPlaceholder, REST Countries) or a mock API service.
@@ -145,6 +147,8 @@ Detailed api information https://app.swaggerhub.com/apis/SELOBU_1/futureloop/1.0
 By default de app use the follogin format
 
 ` %(asctime)s - %(name)s - %(levelname)s - %(message)s `
+
+Change the configuration as needed in *config* file, *logging_format* parameter
 
 for detailed information please read https://docs.python.org/3.9/library/logging.html
 

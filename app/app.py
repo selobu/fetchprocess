@@ -27,8 +27,8 @@ def icludepath():
 icludepath()
 # ---
 try:
-    from src.config import Config # type:ignore
-    from src.log import configlogging # type:ignore
+    from app.src.config import Config # type:ignore
+    from app.src.log import configlogging # type:ignore
 except ImportError:
     from .src.config import Config # type:ignore
     from .src.log import configlogging # type:ignore

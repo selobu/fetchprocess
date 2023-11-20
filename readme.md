@@ -142,9 +142,12 @@ Detailed api information https://app.swaggerhub.com/apis/SELOBU_1/futureloop/1.0
 
 ## Logging format
 
-By default de app uses the following format, for detailed information please read https://docs.python.org/3.9/library/logging.html
+By default de app use the follogin format
 
 ` %(asctime)s - %(name)s - %(levelname)s - %(message)s `
+
+for detailed information please read https://docs.python.org/3.9/library/logging.html
+
 
 ## decisions making
 

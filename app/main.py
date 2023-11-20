@@ -26,12 +26,8 @@ def icludepath():
     print('====')
 icludepath()
 # ---
-try:
-    from app.src.config import Config # type:ignore
-    from app.src.log import configlogging # type:ignore
-except ImportError:
-    from .src.config import Config # type:ignore
-    from .src.log import configlogging # type:ignore
+from config import Config # type:ignore
+from log import configlogging # type:ignore
 
 app = Chalice(app_name=Config.api_name)
 

@@ -148,6 +148,10 @@ By default de app use the follogin format
 
 for detailed information please read https://docs.python.org/3.9/library/logging.html
 
+cloudwatch example 
+
+![image](https://github.com/selobu/fetchprocess/assets/11469144/d3121327-9997-424d-847d-d393a51d4193)
+
 
 ## decisions making
 

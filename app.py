@@ -12,13 +12,20 @@ from chalice import Chalice
 from sys import path as syspath 
 from pathlib import Path
 from os.path import abspath
-cp = Path(__file__).parent
-if abspath(cp) not in syspath:
-    syspath.append(abspath(cp))
-# ---
 
-from src.config import Config # type:ignore
-from src.log import configlogging # type:ignore
+def icludepath():
+    cp = Path(__file__).parent
+    if abspath(cp) not in syspath:
+        syspath.append(abspath(cp))
+icludepath()
+# ---
+try:
+    from src.config import Config # type:ignore
+    from src.log import configlogging # type:ignore
+except ImportError:
+    from .src.config import Config # type:ignore
+    from .src.log import configlogging # type:ignore
+    
 app = Chalice(app_name=Config.api_name)
 
 # -----

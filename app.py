@@ -8,8 +8,8 @@ import subprocess
 from functools import wraps
 from chalice import Chalice
 
-from src.config import Config # type:ignore
-from src.log import configlogging # type:ignore
+from chalicelib.config import Config # type:ignore
+from chalicelib.log import configlogging # type:ignore
 
 app = Chalice(app_name=Config.api_name)
 
@@ -17,6 +17,7 @@ app = Chalice(app_name=Config.api_name)
 # hack : overwriting chalice log config
 configlogging(app)
 # -----
+
 log = app.log
 
 def docs(func):

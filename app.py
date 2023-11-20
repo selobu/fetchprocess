@@ -9,17 +9,16 @@ from functools import wraps
 from chalice import Chalice
 
 # add src to the syspath
-from sys import path as syspath
+from sys import path as syspath 
 from pathlib import Path
 from os.path import abspath
-cp = Path(__file__).parent()
-cp = cp.joinpath("src")
+cp = Path(__file__).parent
 if abspath(cp) not in syspath:
-    syspath.append(abspath(cp)) 
+    syspath.append(abspath(cp))
 # ---
 
-from src.config import Config
-from src.log import configlogging
+from src.config import Config # type:ignore
+from src.log import configlogging # type:ignore
 app = Chalice(app_name=Config.api_name)
 
 # -----

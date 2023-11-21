@@ -25,4 +25,4 @@ class Config: # pylint: disable=R0902
     engine = {}
     app_name: str = appname  # type:ignore
     per_page: int = 50
-    externalapiurl = ''
+    externalapiurl = 'https://jsonplaceholder.typicode.com/posts'

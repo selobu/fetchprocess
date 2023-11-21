@@ -3,7 +3,7 @@
     Returns:
         _type_: _description_
 """
-
+import requests
 import subprocess
 from functools import wraps
 from chalice import Chalice
@@ -20,7 +20,22 @@ configlogging(app)
 
 log = app.log
 
-def docs(func):
+def catcherror(func):
+    """_summary_
+
+    Args:
+        func (_type_): _description_
+    """
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        """_summary_
+        """
+        res = func(*args, **kwargs)
+        return res
+    
+    return wrapper
+
+def loginout(func):
     """automatically rest api document generation
 
     Args:
@@ -36,40 +51,63 @@ def docs(func):
         Returns:
             _type_: _description_
         """
-        return func(*args, **kwargs)
+        name = func.__qualname__
+        log.info(f'[INIT] - {name}')
+        res = func(*args, **kwargs)
+        log.info(f'[END] - {name}')
+        return res
+
     return wrapper
 
 @app.route('/')
+@loginout
 def index():
     """_summary_
 
     Returns:
         _type_: _description_
     """
-    log.info('information')
     return {'hello': 'world'}
 
 @app.route('/fetch-data', methods=['GET'])
+@loginout
 def fetch():
     """_summary_
 
     Returns:
         _type_: _description_
     """
-    log.info("Retrieving data")
-    return {'fetch': 'data'}
+    r = requests.get(Config.externalapiurl)
+    message = "unknown data"
+    if r.status_code == 404:
+        log.debug(f'{r.status_code} - api endpoint not found {Config.externalapiurl}')
+        message =  {"Error": 'api endpoint not found'}
+    elif r.status_code == 400:
+        log.debug(f'{r.status_code} - Bad request  {Config.externalapiurl}')
+        message = {"Error": 'Bad request'}
+    elif str(r.status_code).startswith('4'):
+         message = "Error"
+    if r.status_code == 200:
+        data = r.json()
+        
+        message = {'fetch': 'data'}
+    elif str(r.status_code).startswith('2'):
+        message = 'success full'
+    log.info(r.status_code)
+    return r.status_code, message
 
 @app.route('/view-data', methods=['GET'])
+@loginout
 def viewdata():
     """_summary_
 
     Returns:
         _type_: _description_
     """
-    log.info('Viewing data')
     return {'view': 'data'}
 
 @app.route('/status/{numentries}', methods=['GET'])
+@loginout
 def status(numentries):
     """_summary_
 

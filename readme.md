@@ -181,6 +181,6 @@ for detailed information please read https://docs.python.org/3.9/library/logging
 
 1. Create a configuration file to read general information such as app name, fetch url endpoints
 2. DB: selected dynamodb to store information
-3. Security: JWT to protect endpoints
+3. Security: JWT to protect endpoints (missing)
 4. API docs: I selected restapi but the framework is lacking of automatically swagger structure generation, so I chose swaggerhub to create the api documentation.
 5. Create a hack to enforce a custom logging format

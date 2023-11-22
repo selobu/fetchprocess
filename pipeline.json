@@ -424,13 +424,13 @@
       "Type": "AWS::DynamoDB::Table",
       "Properties":{
         "TableName": "Demo",
-        "AttributeDefinitions" : [ {"AttributeName": "id",  "AttributeType": "S"},
+        "AttributeDefinitions" : [ {"AttributeName": "userId",  "AttributeType": "N"},
           {"AttributeName": "timestamp",  "AttributeType": "S"}
         ],
         "BillingMode" : "PAY_PER_REQUEST",
         "ContributorInsightsSpecification" : {  "Enabled" : true },
         "DeletionProtectionEnabled" : true,
-        "KeySchema" : [ {"AttributeName": "id",  "KeyType": "HASH"},
+        "KeySchema" : [ {"AttributeName": "userId",  "KeyType": "HASH"},
           {"AttributeName": "timestamp",   "KeyType": "RANGE"}
         ],
         "TableClass" : "STANDARD",
@@ -456,12 +456,14 @@
       "Type": "AWS::DynamoDB::Table",
       "Properties":{
         "TableName": "Status",
-        "AttributeDefinitions" : [ {"AttributeName": "timestamp",  "AttributeType": "S"}
+        "AttributeDefinitions" : [ {"AttributeName": "date",  "AttributeType": "S"},
+        {"AttributeName": "timestamp",  "AttributeType": "S"}
         ],
         "BillingMode" : "PAY_PER_REQUEST",
         "ContributorInsightsSpecification" : {  "Enabled" : true },
         "DeletionProtectionEnabled" : true,
-        "KeySchema" : [ {"AttributeName": "timestamp",  "KeyType": "HASH"}
+        "KeySchema" : [ {"AttributeName": "date",  "KeyType": "HASH"},
+          {"AttributeName": "timestamp",  "KeyType": "RANGE"}
         ],
         "TableClass" : "STANDARD",
         "Tags" : [ ]

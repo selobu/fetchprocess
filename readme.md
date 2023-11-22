@@ -87,7 +87,7 @@ ratelimit | timestamp | store request to limit maximum request per a given time
 
 ### Sample data
 
-**Demo** database
+**Demo** table
 
 ``` JSON
 {
@@ -106,13 +106,29 @@ ratelimit | timestamp | store request to limit maximum request per a given time
 }
 ```
 
-**RateLimit** database
+**RateLimit** table
 
 ``` JSON
 { "RateLimit": [
     "PutRequest":{
         "Item":{
             "timestamp" : [ "S": "1657909382"]
+        }
+    }
+
+]}
+
+```
+
+**Status** table
+
+``` JSON
+{ "RateLimit": [
+    "PutRequest":{
+        "Item":{
+            "timestamp" : [ "S": "1657909382"],
+            "itemsfetched" : ["N":"2"],
+            "errors": ["S": "Error message"]
         }
     }
 

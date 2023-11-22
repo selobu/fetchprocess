@@ -451,6 +451,21 @@
         "TableClass" : "STANDARD",
         "Tags" : [ ]
       }
+    },
+    "DBStatus": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties":{
+        "TableName": "Status",
+        "AttributeDefinitions" : [ {"AttributeName": "timestamp",  "AttributeType": "S"}
+        ],
+        "BillingMode" : "PAY_PER_REQUEST",
+        "ContributorInsightsSpecification" : {  "Enabled" : true },
+        "DeletionProtectionEnabled" : true,
+        "KeySchema" : [ {"AttributeName": "timestamp",  "KeyType": "HASH"}
+        ],
+        "TableClass" : "STANDARD",
+        "Tags" : [ ]
+      }
     }
   },
   "Outputs": {
@@ -487,6 +502,11 @@
     "RateLimit": {
       "Value": {
         "Ref": "DBDynamoRatelimit"
+      }
+    },
+    "Status": {
+      "Value": {
+        "Ref": "DBStatus"
       }
     }
   }

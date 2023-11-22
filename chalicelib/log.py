@@ -1,10 +1,11 @@
-#coding: utf-8
+# coding: utf-8
 """hack to configure the logging
 """
 import logging
 from chalicelib.config import Config
 
-def configlogging(app=None)-> logging.Logger:
+
+def initapp(app=None) -> logging.Logger:
     """_summary_
 
     Args:
@@ -13,7 +14,7 @@ def configlogging(app=None)-> logging.Logger:
     Returns:
         logging.Logger: return the logger
     """
-    app.debug=True # equivalent to .setLevel(logging.DEBUG)
+    app.debug = True  # equivalent to .setLevel(logging.DEBUG)
     log = app.log
     handler = log.handlers[0]
     formatter = logging.Formatter(Config.logging_format)

@@ -6,7 +6,7 @@ Fetch and process app is a servless api to allows you to
 
 Deploy this Chalice app using AWS Lambda and API Gateway.
 
-current endpoint url https://dxd485zetg.execute-api.us-east-1.amazonaws.com/api/
+current endpoint url https://hfqfs9wqj7.execute-api.us-east-1.amazonaws.com/api/
 
 **External API Integration:**
 

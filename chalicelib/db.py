@@ -8,14 +8,13 @@ from json import loads
 from pathlib import Path
 from boto3.dynamodb.conditions import Key
 from json import dumps
+from os import environ
 
 __TableNames = ['Demo','RateLimit','Status']
 
 client = boto3.client('dynamodb')# catch resource in exception
 
-DEBUG = True
-
-if DEBUG:
+if (DEBUG:=environ.get("DEBUG", default=True)) == True:
     dynamodb = boto3.resource("dynamodb", endpoint_url='http://localhost:8002')
 else:
     dynamodb = boto3.resource("dynamodb")

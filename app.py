@@ -10,20 +10,18 @@ from chalice import Chalice
 
 from chalicelib.config import Config  # type:ignore
 from chalicelib import log  # type:ignore
-from chalicelib import db
+from chalicelib import db, tools
 
 from datetime import datetime
 
 app = Chalice(app_name=Config.api_name)
 
 db.initapp(app)
-# -----
-# hack : overwriting chalice log config
+# ----- hack : overwriting chalice log config
 log.initapp(app)
 # -----
 
 log = app.log
-
 
 def catcherror(func):
     """_summary_
@@ -103,14 +101,13 @@ def fetch():
                 app.db.register(item)
             except Exception as e:
                 error.append(str(e))
-        errormessage = f'{len(error)}' + ';\n\r'.join(error)
+        errors = len(error)
+        errormessage = f'{errors}' + ';\n\r'.join(error)
         
         # getting timestamp
-        dt = datetime.now()
-        ts = datetime.timestamp(dt)
 
-        app.db.statusreg({'timestamp': ts,
-                'itemsfetched': len(r.json)-len(error),
+        app.db.statusreg({'timestamp': tools.now(),
+                'itemsfetched': len(r.json())-errors,
                 'errors': errormessage})
         
         message = {"fetch": "successfull"}
@@ -128,24 +125,25 @@ def viewdata():
     Returns:
         _type_: _description_
     """
-    return {"view": "data"}
+    return app.db.registerget()
 
 
-@app.route("/status/{numentries}", methods=["GET"])
+@app.route("/status", methods=["GET"])
 @loginout
-def status(numentries):
+def status():
     """_summary_
 
     Returns:
         _type_: _description_
     """
-    result = subprocess.run(
-        ["chalice", "logs", "--num-entries", numentries],
-        check=True,
-        capture_output=True,
-    )
-
-    return repr(result.stdout)
+    if False:
+        result = subprocess.run(
+            ["chalice", "logs", "--num-entries", numentries],
+            check=True,
+            capture_output=True,
+        )
+        repr(result.stdout)
+    return app.db.statusget()
 
 
 # The view function above will return {"hello": "world"}

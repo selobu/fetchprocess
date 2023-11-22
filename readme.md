@@ -139,6 +139,14 @@ ratelimit | timestamp | store request to limit maximum request per a given time
 
 ## Local deployment
 
+run dynamo in docker
+
+```
+docker run -p 8002:8000 amazon/dynamodb-local
+```
+
+Here I choosed the port 8002 because port 8000 is occupied
+
 
 ```
     $ chalice local --port 8001

@@ -28,6 +28,11 @@
       "Type": "String",
       "Default": "OAuthToken",
       "Description": "The name of the JSON key in the SecretsManager secret that contains the personal access token for the github repo."
+    },
+    "AlarmEmail": {
+      "Default": "selobu@gmail.com",
+      "Description": "Email address to notify of operational issues",
+      "Type": "String"
     }
   },
   "Resources": {
@@ -468,6 +473,27 @@
         "TableClass" : "STANDARD",
         "Tags" : [ ]
       }
+    },
+    "AlarmTopic": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "Subscription": [{
+          "Endpoint": { "Ref": "AlarmEmail" },
+          "Protocol": "email"
+        }]
+      }
+    },
+    "DLQ":{
+      "Type" : "AWS::SQS::Queue",
+      "Properties" : {
+          "RedrivePolicy": {
+            "deadLetterTargetArn" : {"Fn::GetAtt" : [ "FutureloopDeadLetterQueue" , "Arn" ]},
+            "maxReceiveCount" : 5
+          }
+        }
+    },
+    "FutureloopDeadLetterQueue" : {
+      "Type" : "AWS::SQS::Queue"
     }
   },
   "Outputs": {
@@ -510,6 +536,18 @@
       "Value": {
         "Ref": "DBStatus"
       }
+    },
+    "QueueURL" : {
+      "Description" : "URL of new Amazon SQS Queue",
+      "Value" : { "Ref" : "DLQ" }
+    },
+    "QueueARN" : {
+      "Description" : "ARN of new Amazon SQS Queue",
+      "Value" : { "Fn::GetAtt" : ["DLQ", "Arn"]}
+    },
+    "DeadLetterQueueURL" : {
+      "Description" : "URL of dead-letter queue",
+      "Value" : { "Ref" : "FutureloopDeadLetterQueue" }
     }
   }
 }
